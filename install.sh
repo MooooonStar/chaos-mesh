@@ -81,7 +81,7 @@ main() {
     local install_dependency_only=false
     local k3s=false
     local host_network=false
-    local docker_registry="harbor.shopeemobile.com"
+    local docker_registry="docker.io"
 
     while [[ $# -gt 0 ]]
     do
@@ -618,11 +618,12 @@ install_chaos_mesh() {
     local docker_registry=${11}
     printf "Install Chaos Mesh %s\n" "${release_name}"
 
-    local chaos_mesh_image="${docker_registry}/pingcap/chaos-mesh:${version}"
-    local chaos_daemon_image="${docker_registry}/pingcap/chaos-daemon:${version}"
-    local chaos_dashboard_image="${docker_registry}/pingcap/chaos-dashboard:${version}"
+    local chaos_mesh_image="${docker_registry}/snoooowhite/chaos-mesh:${version}"
+    local chaos_daemon_image="${docker_registry}/snoooowhite/chaos-daemon:${version}"
+    local chaos_dashboard_image="${docker_registry}/snoooowhite/chaos-dashboard:${version}"
 
     if [ "$docker_mirror" == "true" ]; then
+        echo "docker mirror is true"
         azk8spull "${chaos_mesh_image}" || true
         azk8spull "${chaos_daemon_image}" || true
         azk8spull "${chaos_dashboard_image}" || true
@@ -1108,7 +1109,7 @@ spec:
       hostPID: true
       containers:
         - name: chaos-daemon
-          image: ${DOCKER_REGISTRY_PREFIX}/pingcap/chaos-daemon:${VERSION_TAG}
+          image: ${DOCKER_REGISTRY_PREFIX}/snoooowhite/chaos-daemon:${VERSION_TAG}
           imagePullPolicy: IfNotPresent
           command:
             - /usr/local/bin/chaos-daemon
@@ -1179,7 +1180,7 @@ spec:
       serviceAccount: chaos-controller-manager
       containers:
         - name: chaos-dashboard
-          image: ${DOCKER_REGISTRY_PREFIX}/pingcap/chaos-dashboard:${VERSION_TAG}
+          image: ${DOCKER_REGISTRY_PREFIX}/snoooowhite/chaos-dashboard:${VERSION_TAG}
           imagePullPolicy: IfNotPresent
           resources:
             limits: {}
@@ -1244,7 +1245,7 @@ spec:
       serviceAccount: chaos-controller-manager
       containers:
       - name: chaos-mesh
-        image: ${DOCKER_REGISTRY_PREFIX}/pingcap/chaos-mesh:${VERSION_TAG}
+        image: ${DOCKER_REGISTRY_PREFIX}/snoooowhite/chaos-mesh:${VERSION_TAG}
         imagePullPolicy: IfNotPresent
         resources:
             limits: {}

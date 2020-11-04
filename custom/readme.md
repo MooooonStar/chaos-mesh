@@ -8,11 +8,11 @@ make generate
 
 mkdir -p chaosmesh/controllers/golangchaos
 
-cp custom/types.go chaosmesh/controllers/golangchaos/
+cp custom/types.go.tpl chaosmesh/controllers/golangchaos/types.go
 
 protoc --go_out=plugins=grpc:. ./chaosdaemon.proto
 
-cp custom/golang_error.go chaosmesh/pkg/chaosdaemon/
+cp custom/golang_error.go.tpl chaosmesh/pkg/chaosdaemon/golang_error.go
 
 set DOCKER_REGISTRY harbor.shopeemobile.com
 

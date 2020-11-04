@@ -59,7 +59,7 @@ EOF
 
 main() {
     local local_kube=""
-    local cm_version="latest-beta"
+    local cm_version="latest"
     local kind_name="kind"
     local kind_version="v0.7.0"
     local node_num=3

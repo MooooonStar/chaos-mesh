@@ -10,6 +10,12 @@ RUN apt-get update && apt-get install -y tzdata iptables ipset stress-ng iproute
 
 RUN update-alternatives --set iptables /usr/sbin/iptables-legacy
 
+ADD https://github.com/riccccchard/delve_tool/releases/download/delve_tool-0.3.0/delve_tool /usr/local/bin/
+#防止权限不足
+RUN chmod 777 /usr/local/bin/delve_tool
+ENV RUST_BACKTRACE 1
+
+
 ENV RUST_BACKTRACE 1
 
 COPY --from=pingcap/chaos-binary /bin/chaos-daemon /usr/local/bin/chaos-daemon

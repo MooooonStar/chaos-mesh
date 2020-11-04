@@ -59,7 +59,7 @@ EOF
 
 main() {
     local local_kube=""
-    local cm_version="latest"
+    local cm_version="latest-beta"
     local kind_name="kind"
     local kind_version="v0.7.0"
     local node_num=3
@@ -81,7 +81,7 @@ main() {
     local install_dependency_only=false
     local k3s=false
     local host_network=false
-    local docker_registry="docker.io"
+    local docker_registry="harbor.shopeemobile.com"
 
     while [[ $# -gt 0 ]]
     do

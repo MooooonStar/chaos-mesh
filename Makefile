@@ -1,6 +1,6 @@
 # Set DEBUGGER=1 to build debug symbols
 LDFLAGS = $(if $(IMG_LDFLAGS),$(IMG_LDFLAGS),$(if $(DEBUGGER),,-s -w) $(shell ./hack/version.sh))
-DOCKER_REGISTRY ?= "localhost:5000"
+DOCKER_REGISTRY ?= "harbor.shopeemobile.com"
 
 # SET DOCKER_REGISTRY to change the docker registry
 DOCKER_REGISTRY_PREFIX := $(if $(DOCKER_REGISTRY),$(DOCKER_REGISTRY)/,)
@@ -10,7 +10,7 @@ GOVER_MAJOR := $(shell go version | sed -E -e "s/.*go([0-9]+)[.]([0-9]+).*/\1/")
 GOVER_MINOR := $(shell go version | sed -E -e "s/.*go([0-9]+)[.]([0-9]+).*/\2/")
 GO111 := $(shell [ $(GOVER_MAJOR) -gt 1 ] || [ $(GOVER_MAJOR) -eq 1 ] && [ $(GOVER_MINOR) -ge 11 ]; echo $$?)
 
-IMAGE_TAG := $(if $(IMAGE_TAG),$(IMAGE_TAG),latest)
+IMAGE_TAG := $(if $(IMAGE_TAG),$(IMAGE_TAG),latest-beta)
 
 ROOT=$(shell pwd)
 OUTPUT_BIN=$(ROOT)/output/bin
